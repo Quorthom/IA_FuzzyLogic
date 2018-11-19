@@ -15,6 +15,10 @@ public:
   void membership_going_left(double v);
   void membership_steady(double v);
   void membership_going_right(double v);
+  //proccess
+  void inference();
+  double Min(double r, double c);
+  double Max(double min, double membership);
 
 
 private:
@@ -26,6 +30,12 @@ private:
   double going_left;
   double steady;
   double going_right;
+  //memberships for angle
+  double negative_large;
+  double negative_short;
+  double zero;
+  double positive_short;
+  double positive_large;
 
 };
 
