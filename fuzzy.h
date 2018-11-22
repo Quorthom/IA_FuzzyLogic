@@ -2,6 +2,7 @@
 #define FUZZY_H_
 
 #include <iostream>
+#include <cmath>
 
 class fuzzy{
 public:
@@ -15,10 +16,17 @@ public:
   void membership_going_left(double v);
   void membership_steady(double v);
   void membership_going_right(double v);
+  //Methods for area calculation
+  double triangle_Area(double h);
+  double trapeze_Area(double h);
+  double center_of_the_sums();
+  //control
+  double fuzzy_logic(double d, double v);
   //proccess
   void inference();
   double Min(double r, double c);
   double Max(double min, double membership);
+
 
 
 private:
@@ -36,6 +44,12 @@ private:
   double zero;
   double positive_short;
   double positive_large;
+  //Areas
+  double negative_large_Area;
+  double negative_short_Area;
+  double zero_Area;
+  double positive_short_Area;
+  double positive_large_Area;
 
 };
 
