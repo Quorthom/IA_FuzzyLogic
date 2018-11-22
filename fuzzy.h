@@ -19,6 +19,12 @@ public:
   void inference();
   double Min(double r, double c);
   double Max(double min, double membership);
+  //defuzzification
+  double triangle_Area(double h);
+  double trapeze_Area(double h);
+  double center_of_the_sums();
+  //control
+  double fuzzy_logic(double d, double v);
 
 
 private:
@@ -36,6 +42,12 @@ private:
   double zero;
   double positive_short;
   double positive_large;
+  //Areas
+  double negative_large_Area;
+  double negative_short_Area;
+  double zero_Area;
+  double positive_short_Area;
+  double positive_large_Area;
 
 };
 

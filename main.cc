@@ -3,8 +3,7 @@
 int main() {
   fuzzy f;
 
-  f.fuzzification(1,-0.5); //test for fuzzification
-  f.inference();
+  std::cout<<"angle = " << f.fuzzy_logic(-10, -5)  << std::endl;
 
 
   return 0;
