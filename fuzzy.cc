@@ -108,13 +108,13 @@ void fuzzy::inference(){
   //RULE 9
   if( right && going_right ) negative_large = Max( Min(right, going_right), negative_large );
 
-  //test for inference
+  /*//test for inference
   std::cout<<"negative_large = " << negative_large <<"."<<std::endl;
   std::cout<<"negative_short = " << negative_short <<"."<<std::endl;
   std::cout<<"zero = " << zero <<"."<<std::endl;
   std::cout<<"positive_short = " << positive_short <<"."<<std::endl;
   std::cout<<"positive_large = " << positive_large <<"."<<std::endl;
-  std::cout<<std::endl;
+  std::cout<<std::endl;*/
 
 }
 
@@ -148,16 +148,17 @@ double fuzzy::center_of_the_sums(){
   positive_short_Area = triangle_Area(positive_short);
   positive_large_Area = trapeze_Area(positive_large);
 
+  /*//test for Areas
   std::cout<<"Area of negative_large = " << negative_large_Area <<"."<<std::endl;
   std::cout<<"Area of negative_short = " << negative_short_Area <<"."<<std::endl;
   std::cout<<"Area of zero = " << zero_Area <<"."<<std::endl;
   std::cout<<"Area of positive_short_short = " << positive_short_Area <<"."<<std::endl;
   std::cout<<"Area of positive_large_short = " << positive_large_Area <<"."<<std::endl;
-  std::cout<<std::endl;
+  std::cout<<std::endl;*/
 
   double total_area = negative_large_Area + negative_short_Area + zero_Area + positive_short_Area + positive_large_Area;
-  std::cout<<"total_area = " << total_area <<"."<<std::endl;
-  std::cout<<std::endl;
+  //std::cout<<"total_area = " << total_area <<"."<<std::endl;
+  //std::cout<<std::endl;
   return ((negative_large_Area*(-60)) + (negative_short_Area*(-30)) + (zero_Area*(0)) + (positive_short_Area*(30)) + (positive_large_Area*(60)) )/total_area;
 }
 

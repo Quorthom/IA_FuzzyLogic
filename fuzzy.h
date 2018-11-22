@@ -2,6 +2,7 @@
 #define FUZZY_H_
 
 #include <iostream>
+#include <math.h>
 
 class fuzzy{
 public:
