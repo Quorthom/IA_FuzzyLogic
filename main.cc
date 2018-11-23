@@ -26,7 +26,7 @@ int main() {
     if(Theta > 0) a = a*(-1);
     d0 = d;
     v0 = v;
-    v = v0 + a*(t*t);
+    v = v0 + a*t;
     d = d0 + v0*t + (0.5)*a*(t*t);
     std::cout<<"aceleration = " << a << std::endl;
     std::cout<<"position after: "<< t << " seconds = " << d << std::endl;
