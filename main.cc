@@ -27,7 +27,7 @@ int main() {
     fy = u*9.807*cos(fabs(Theta*(PI/180)));
     if(fx <= fy) a = 0;
     else a = fx - fy;
-    if(Theta < 0) a = a*(-1);
+    if(Theta > 0) a = a*(-1);
     d0 = d;
     v0 = v;
     v = v0 + a*(t*t);

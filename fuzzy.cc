@@ -82,31 +82,31 @@ void fuzzy::membership_going_right(double v){
 
 void fuzzy::inference(){
   //RULE 1
-  if( left && going_left ) positive_large = Max( Min(left, going_left), positive_large );
+  if( left && going_left ) negative_large = Max( Min(left, going_left), negative_large );
 
   //RULE 2
-  if( left && steady ) positive_short = Max( Min(left, steady), positive_short );
+  if( left && steady ) negative_short = Max( Min(left, steady), negative_short );
 
   //RULE 3
   if( left && going_right ) zero = Max( Min(left, going_right), zero );
 
   //RULE 4
-  if( centered && going_left ) positive_short = Max( Min(centered, going_left), positive_short );
+  if( centered && going_left ) negative_short = Max( Min(centered, going_left), negative_short );
 
   //RULE 5
   if( centered && steady ) zero = Max( Min(centered, steady), zero );
 
   //RULE 6
-  if( centered && going_right ) negative_short = Max( Min(centered, going_right), negative_short );
+  if( centered && going_right ) positive_short = Max( Min(centered, going_right), positive_short );
 
   //RULE 7
   if( right && going_left ) zero = Max( Min(right, going_left), zero );
 
   //RULE 8
-  if( right && steady ) negative_short = Max( Min(right, steady), negative_short );
+  if( right && steady ) positive_short = Max( Min(right, steady), positive_short );
 
   //RULE 9
-  if( right && going_right ) negative_large = Max( Min(right, going_right), negative_large );
+  if( right && going_right ) positive_large = Max( Min(right, going_right), positive_large );
 
   /*//test for inference
   std::cout<<"negative_large = " << negative_large <<"."<<std::endl;
