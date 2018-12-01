@@ -70,7 +70,7 @@ void fuzzy::membership_going_left(double v){
 void fuzzy::membership_steady(double v){
   if( v <= -2.5 || v >= 2.5 ) steady = 0;
   else if( v > -2.5 && v <  0  ) steady = ((v/2.5)+1);
-  else if( v >   0  && v < 2.5 ) steady = (-(v/2.5)+1);
+  else if( v >  0  && v < 2.5 ) steady = (-(v/2.5)+1);
   else if( v == 0 ) steady = 1;
 }
 
@@ -82,32 +82,56 @@ void fuzzy::membership_going_right(double v){
 
 void fuzzy::inference(){
   //RULE 1
-  if( left && going_left ) negative_large = Max( Min(left, going_left), negative_large );
+  if( left && going_left ) {
+    positive_large = Min(left, going_left);
+  }
+  else{
+    positive_large = 0;
+  }
 
   //RULE 2
-  if( left && steady ) negative_short = Max( Min(left, steady), negative_short );
+  if( left && steady ) {
+    positive_short = Min(left, steady);
+  }
+  else{
+      positive_short = 0;
+  }
 
   //RULE 3
-  if( left && going_right ) zero = Max( Min(left, going_right), zero );
+  if( left && going_right ) {
+    zero = Min(left, going_right);
+  }
+  else{
+    zero = 0;
+  }
 
   //RULE 4
-  if( centered && going_left ) negative_short = Max( Min(centered, going_left), negative_short );
+  if( centered && going_left ) positive_short = Max( Min(centered, going_left), positive_short);
 
   //RULE 5
   if( centered && steady ) zero = Max( Min(centered, steady), zero );
 
   //RULE 6
-  if( centered && going_right ) positive_short = Max( Min(centered, going_right), positive_short );
+  if( centered && going_right ) {
+    negative_short = Min(centered, going_right);
+  }
+  else{
+    negative_short = 0;
+  }
 
   //RULE 7
   if( right && going_left ) zero = Max( Min(right, going_left), zero );
 
   //RULE 8
-  if( right && steady ) positive_short = Max( Min(right, steady), positive_short );
+  if( right && steady ) negative_short = Max( Min(right, steady), positive_short );
 
   //RULE 9
-  if( right && going_right ) positive_large = Max( Min(right, going_right), positive_large );
-
+  if( right && going_right ) {
+    negative_large = Min(right, going_right);
+  }
+  else{
+    negative_large = 0;
+  }
   /*//test for inference
   std::cout<<"negative_large = " << negative_large <<"."<<std::endl;
   std::cout<<"negative_short = " << negative_short <<"."<<std::endl;
@@ -124,7 +148,6 @@ double fuzzy::Min(double r, double c){
 }
 
 double fuzzy::Max(double min, double membership){
-  if(!membership) return min;
   if(membership > min) return membership;
   else return min;
 }
@@ -132,13 +155,13 @@ double fuzzy::Max(double min, double membership){
 double fuzzy::triangle_Area(double h){
   double x = 0;
   x = 30*h;
-  return  (60+(60-(2*x)))*h/2;
+  return  (60 - x)*h;
 }
 
 double fuzzy::trapeze_Area(double h){
   double x = 0;
   x = 30*h;
-  return (x*h)/2 + (60-x)*h;
+  return h*(60-0.5*x);
 }
 
 double fuzzy::center_of_the_sums(){
@@ -159,7 +182,7 @@ double fuzzy::center_of_the_sums(){
   double total_area = negative_large_Area + negative_short_Area + zero_Area + positive_short_Area + positive_large_Area;
   //std::cout<<"total_area = " << total_area <<"."<<std::endl;
   //std::cout<<std::endl;
-  return ((negative_large_Area*(-60)) + (negative_short_Area*(-30)) + (zero_Area*(0)) + (positive_short_Area*(30)) + (positive_large_Area*(60)) )/total_area;
+  return ((negative_large_Area*(200)/3) + (negative_short_Area*(30)) + (positive_short_Area*(-30)) + (positive_large_Area*(-200)/3) )/total_area;
 }
 
 double fuzzy::fuzzy_logic(double d, double v){
