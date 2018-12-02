@@ -68,9 +68,9 @@ void fuzzy::membership_going_left(double v){
 }
 
 void fuzzy::membership_steady(double v){
-  if( v <= -2.5 || v >= 2.5 ) steady = 0;
-  else if( v > -2.5 && v <  0  ) steady = ((v/2.5)+1);
-  else if( v >  0  && v < 2.5 ) steady = (-(v/2.5)+1);
+  if( v <= -1 || v >= 1 ) steady = 0;
+  else if( v > -1 && v <  0  ) steady = ((v/1)+1);
+  else if( v >  0  && v < 1 ) steady = (-(v/1)+1);
   else if( v == 0 ) steady = 1;
 }
 

@@ -8,7 +8,7 @@ int main() {
   fuzzy f;
   double d = 0, v = 0, a = 0; //condiciones iniciales del sistema
   double Theta = 0; //angulo de ajuste del sistema.
-  double u = 0, t = 0.1; //parametros del sitema: factor de rozamiento y tiempo de accion.
+  double u = 0.1, t = 0.1; //parametros del sitema: factor de rozamiento y tiempo de accion.
   double d0 = 0, v0 = 0; //variables de movimiento, aceleracion instantanea, distancia anterior (i-1) y velocidad anterior (i-1)
   int it = 0; //iterador
 
@@ -25,7 +25,7 @@ int main() {
   std::cin>>v;
 
   std::cout<<"\nSTARTING SIMULATION"<<std::endl;
-  while( ( d > 0.1 || d < -0.1 ) || ( v > 0.1 || v < -0.1 )  ){
+  while( ( d > 0.65 || d < -0.65 ) || ( v > 0.1 || v < -0.1 )  ){
     std::cout<<"Iteration no. "<< it<<std::endl;
     Theta = f.fuzzy_logic(d, v);
     std::cout<<"adjustment: "<< Theta<< " degrees."<<std::endl;
